@@ -119,9 +119,11 @@ exports.toggleFavorite = async (req, res) => {
     }
 
     // Actualizar el estado de favorito (invertir)
+    const newFavoriteStatus = !Boolean(movie.isFavorite);
+    
     const updatedMovie = await prisma.movie.update({
       where: { id },
-      data: { isFavorite: !movie.isFavorite },
+      data: { isFavorite: newFavoriteStatus },
     });
 
     res.json(updatedMovie);
