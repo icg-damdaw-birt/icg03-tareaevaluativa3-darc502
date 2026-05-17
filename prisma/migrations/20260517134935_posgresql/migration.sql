@@ -17,6 +17,7 @@ CREATE TABLE "Movie" (
     "year" INTEGER NOT NULL,
     "posterUrl" TEXT,
     "isFavorite" BOOLEAN NOT NULL DEFAULT false,
+    "rating" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "ownerId" TEXT NOT NULL,
