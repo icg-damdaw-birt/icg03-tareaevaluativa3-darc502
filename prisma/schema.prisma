@@ -28,9 +28,7 @@ model Movie {
   year      Int                            // Año de estreno
   posterUrl String?                        // URL del póster (opcional)
   isFavorite Boolean @default(false)       // Marcar como favorito
-  
-  // Campos que se añadirán en UD3:
-  // - rating     Int?     @default(0)     // Rating 0-5 (UD3 - ejercicio)
+  rating    Int @default(0)                // Rating 0-5 (0 = sin calificar)
   
   createdAt DateTime @default(now())       // Cuándo se añadió
   updatedAt DateTime @updatedAt            // Última modificación
