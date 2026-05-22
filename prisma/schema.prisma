@@ -2,38 +2,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Base de datos
-// - Desarrollo (UD3-4): SQLite (archivo local ./dev.db)
-// - Producción (UD5): PostgreSQL en Neon
 datasource db {
-  provider = "postgresql"  
+  provider = "postgresql"
 }
 
-// Usuario del sistema (alumno con su videoteca personal)
 model User {
-  id        String   @id @default(cuid())  // ID único
-  email     String   @unique               // Email de login (único)
-  password  String                         // Hash bcrypt (nunca texto plano)
-  createdAt DateTime @default(now())       // Fecha de registro
-  updatedAt DateTime @updatedAt            // Última actualización
-
-  movies    Movie[]  // Películas de este usuario
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
 }
 
-// Película en la videoteca personal de un usuario
 model Movie {
-  id        String   @id @default(cuid())  // ID único
-  title     String                         // Título de la película
-  director  String                         // Director
-  year      Int                            // Año de estreno
-  posterUrl String?                        // URL del póster (opcional)
-  isFavorite Boolean @default(false)       // Marcar como favorito
-  rating    Int @default(0)                // Rating 0-5 (0 = sin calificar)
-  
-  createdAt DateTime @default(now())       // Cuándo se añadió
-  updatedAt DateTime @updatedAt            // Última modificación
-
-  // Relación: esta película pertenece a un usuario
-  ownerId   String
-  owner     User     @relation(fields: [ownerId], references: [id])
+  id         String   @id @default(cuid())
+  title      String
+  director   String
+  year       Int
+  posterUrl  String?
+  isFavorite Boolean  @default(false)
+  rating     Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  ownerId    String
+  owner      User     @relation(fields: [ownerId], references: [id])
 }
